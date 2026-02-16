@@ -16,7 +16,7 @@ app.get('/health', (req, res) => {
     try 
     {  
         res.send(healthcheck);
-        logger.info(`${req.method} ${req.protocol.toUpperCase()} ${req.host}${req.originalUrl}`);
+        logger.info(`${req.method} ${req.protocol.toUpperCase()} ${req.host}${req.originalUrl} ${process.env.INSTANCE_ID}`);
     } 
     catch (error) 
           {   healthcheck.status = error;

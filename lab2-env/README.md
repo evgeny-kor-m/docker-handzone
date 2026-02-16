@@ -11,10 +11,10 @@ docker exec -it wizardly_hugle bash curl localhost:5000
 ENV Levels
 
 High
-docker inject env
-inject via dockerfile - 4000
-application .env - 5000
-application hardcoded - 3000
+-   docker inject env
+-   inject via dockerfile - 4000
+-   application .env - 5000
+-   application hardcoded - 3000
 Low
 browser 3000 application 3000
 

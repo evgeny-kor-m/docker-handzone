@@ -39,11 +39,11 @@ ifconfig
 exit
 ifconfig
 exit
-
 '''
+
 Start master container
-'''
 
+'''
 docker run -it \
   --name ansible-master \
   --network ansible-net \
@@ -62,11 +62,11 @@ ssh ansible@ansible-slave
 exit
 ssh ansible@ansible-master
 exit
-
 '''
+
 Create inventory based on Agent host
-'''
 
+'''
 tee inventory.yml > /dev/null <<EOF
 all:
   children:
@@ -79,13 +79,15 @@ all:
           ansible_python_interpreter: /usr/bin/python3
 
 EOF
+'''
 
 mv inventory.yml inventory-singel-host.yml
 
 '''
-Create inventory based on Group hosts
-'''
 
+Create inventory based on Group hosts
+
+'''
 tee inventory.yml > /dev/null <<EOF
 all:
   children:
@@ -105,16 +107,19 @@ all:
           ansible_ssh_pass: ansible
           ansible_python_interpreter: /usr/bin/python3
 EOF
-
 '''
+
 Test SSH manually
-'''
 
+'''
 ssh ansible@ansible-slave
 exit
 ansible all -i inventory.yml -m ping
+'''
+
 Run the apache play book
 
+'''
 tee playbook-apache.yml > /dev/null <<EOF
 - hosts: slaves
   become: yes
@@ -152,13 +157,19 @@ tee playbook-apache.yml > /dev/null <<EOF
     - name: Start Apache
       shell: rc-service apache2 start || httpd
 EOF
+'''
 
 Run the playbook of apache web server
+
+'''
 ansible-playbook -i inventory.yml playbook-apache.yml --syntax-check
 ansible-playbook -i inventory.yml playbook-apache.yml -verbose
 ansible-playbook -i inventory.yml playbook-apache.yml
+'''
 
 Test Locally and via the Browser
+
+'''
 docker exec -it ansible-slave sh
 ps aux | grep httpd
 apk add curl
@@ -166,11 +177,11 @@ curl 172.26.0.2:80
   # Via browser
 http:\\localhost:8080
 <html><body><h1>It works!</h1></body></html>
-
 '''
+
 Separatly apache start playbook
-'''
 
+'''
 tee playbook-start-apache.yml > /dev/null <<EOF
 - hosts: slaves
   become: yes
@@ -183,11 +194,11 @@ tee playbook-start-apache.yml > /dev/null <<EOF
     - name: Start Apache
       shell: rc-service apache2 start || httpd
 EOF
-
 '''
+
 Separatly apache stop playbook
-'''
 
+'''
 tee playbook-stop-apache.yml > /dev/null <<EOF
 - hosts: slaves
   become: yes
@@ -198,3 +209,4 @@ tee playbook-stop-apache.yml > /dev/null <<EOF
   - name: Stop Apache safely
     shell: rc-service apache2 stop || true
 EOF
+'''

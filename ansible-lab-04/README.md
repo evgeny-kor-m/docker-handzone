@@ -42,8 +42,8 @@ exit
 Via vi editor copy the manage_flask.yml then run the stop and start state
 -   Stop and Start service
 -   From Master
-'''
 
+'''
 ansible-playbook -i inventory.yml manage_flask.yml -e "state=stop"
 from browser localhost:80
 

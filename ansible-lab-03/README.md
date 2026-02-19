@@ -11,11 +11,13 @@ docker network prune
 Start slave container
 docker network ls
 docker network create ansible-net
+
 '''
 Docker run without browser
 give lab that do all the steps with browser, just with copy module from manager to node
 Docker run with browser via expose port
 '''
+
 docker run -d \
   --name ansible-slave \
   --network ansible-net \
@@ -37,9 +39,11 @@ ifconfig
 exit
 ifconfig
 exit
+
 '''
 Start master container
 '''
+
 docker run -it \
   --name ansible-master \
   --network ansible-net \
@@ -58,9 +62,11 @@ ssh ansible@ansible-slave
 exit
 ssh ansible@ansible-master
 exit
+
 '''
 Create inventory based on Agent host
 '''
+
 tee inventory.yml > /dev/null <<EOF
 all:
   children:
@@ -73,10 +79,13 @@ all:
           ansible_python_interpreter: /usr/bin/python3
 
 EOF
+
 mv inventory.yml inventory-singel-host.yml
+
 '''
 Create inventory based on Group hosts
 '''
+
 tee inventory.yml > /dev/null <<EOF
 all:
   children:
@@ -96,8 +105,11 @@ all:
           ansible_ssh_pass: ansible
           ansible_python_interpreter: /usr/bin/python3
 EOF
+
 '''
 Test SSH manually
+'''
+
 ssh ansible@ansible-slave
 exit
 ansible all -i inventory.yml -m ping

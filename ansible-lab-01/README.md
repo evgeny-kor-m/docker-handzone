@@ -1,4 +1,4 @@
-Ansible installation
+Ansible installation RSA
 based on Docker
 
 Ansible installation based on Docker with rsa key

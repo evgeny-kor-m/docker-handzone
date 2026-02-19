@@ -1,4 +1,4 @@
-Playbook based on python Flask
+Playbook based on "ansible-lab-03" and python Flask
 Cleanup before
 
 Install Ansible cluster via docker

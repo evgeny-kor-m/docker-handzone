@@ -1,6 +1,6 @@
 Ansible installation
 based on Docker
-Dedicated Servers
+
 Ansible installation based on Docker with rsa key
 Cleanup if needed
 docker ps

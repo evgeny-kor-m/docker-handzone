@@ -4,6 +4,7 @@ Playbook based on "ansible-lab-03" and python Flask
 -   make sure you get ping pong
 
 From Master Create app.py based of python flask
+
 '''
 tee app.py > /dev/null <<EOF
 from flask import Flask

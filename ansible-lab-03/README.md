@@ -167,6 +167,9 @@ curl 172.26.0.2:80
 http:\\localhost:8080
 <html><body><h1>It works!</h1></body></html>
 
+'''
+Separatly apache start playbook
+'''
 
 tee playbook-start-apache.yml > /dev/null <<EOF
 - hosts: slaves
@@ -180,6 +183,10 @@ tee playbook-start-apache.yml > /dev/null <<EOF
     - name: Start Apache
       shell: rc-service apache2 start || httpd
 EOF
+
+'''
+Separatly apache stop playbook
+'''
 
 tee playbook-stop-apache.yml > /dev/null <<EOF
 - hosts: slaves

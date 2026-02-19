@@ -26,6 +26,7 @@ Test the app.py locally in ansible slave
 -   Install flask module
 -   Run the app.py locally on ansible-slave
 -   From master
+
 '''
 ansible all -i inventory.yml -m copy -a "src=app.py dest=app.py"
 ssh ansible@ansible-slave
@@ -34,6 +35,7 @@ source /home/ansible/venv/bin/activate
 pip install flask
 python app.py
 '''
+
 From browser localhost:80              # or via curl apk add curl and run the command curl <ip-80>
 exit
 
@@ -41,6 +43,7 @@ Via vi editor copy the manage_flask.yml then run the stop and start state
 -   Stop and Start service
 -   From Master
 '''
+
 ansible-playbook -i inventory.yml manage_flask.yml -e "state=stop"
 from browser localhost:80
 

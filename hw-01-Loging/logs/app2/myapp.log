@@ -1,0 +1,7 @@
+[2026-02-16T14:12:03.266] [INFO] app - GET HTTP localhost:3002/health
+[2026-02-16T14:12:03.750] [INFO] app - GET HTTP localhost:3002/health
+[2026-02-16T14:12:04.204] [INFO] app - GET HTTP localhost:3002/health
+[2026-02-17T16:30:38.847] [INFO] app - Health check called - App2
+[2026-02-17T16:30:41.548] [INFO] app - Health check called - App2
+[INFO] 2026-02-17T16:35:19.554Z - Health check called - App2
+[INFO] 2026-02-17T16:35:20.592Z - Health check called - App2

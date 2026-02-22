@@ -1,0 +1,40 @@
+- name: Manage Flask App
+  hosts: slaves
+
+  vars:
+    app_dir: /home/ansible
+    app_file: "{{ app_dir }}/app.py"
+    venv_python: "{{ app_dir }}/venv/bin/python"
+    pid_file: "{{ app_dir }}/app.pid"
+    state: start        # GLOBAL CONTROL VARIABLE (start|stop)
+
+  tasks:
+
+    - name: Trigger start
+      command: /bin/true
+      when: state == "start"
+      notify: start app
+
+    - name: Trigger stop
+      command: /bin/true
+      when: state == "stop"
+      notify: stop app
+
+  handlers:
+
+    - name: start app
+      shell: |
+        nohup {{ venv_python }} {{ app_file }} \
+        > {{ app_dir }}/app.log 2>&1 &
+        echo $! > {{ pid_file }}
+      args:
+        executable: /bin/sh
+
+    - name: stop app
+      shell: |
+        if [ -f {{ pid_file }} ]; then
+            kill $(cat {{ pid_file }}) || true
+            rm -f {{ pid_file }}
+        fi
+      args:
+        executable: /bin/sh

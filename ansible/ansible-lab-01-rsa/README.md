@@ -11,10 +11,11 @@ docker images
 docker rmi -f $(docker images -q)
 ```
 Ansible Agent Linux
-ssh-keygen -R It removes a saved host key from your SSH known_hosts file
-install ansible-slave
-Go into docker run and install python3
-Get the private ip
+```
+ssh-keygen -R # It removes a saved host key from your SSH known_hosts file
+# install ansible-slave
+# Go into docker run and install python3
+# Get the private ip
 ssh-keygen -A Commonly used when setting up servers, containers, or fresh VMs
 Set PubkeAuth = yes and PasswordAuth = yes in sshd_config file
 Add ansible user

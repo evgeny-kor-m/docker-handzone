@@ -6,7 +6,15 @@ services:
     container_name: ansible-slave-01
     image: ansible-slave-img # We obviously indicate the name of the image
     ports:
+      - "2221:22"
+
+  ansible-slave-02:
+    image: ansible-slave-img
+    container_name: ansible-slave-02
+    ports:
       - "2222:22"
+    depends_on:
+      - ansible-slave-01 # waiting for 
 
   ansible-master-01:
     build:
@@ -22,5 +30,5 @@ services:
 
 networks:
   default:
+    external: true
     name: ansible-net
-    driver: bridge

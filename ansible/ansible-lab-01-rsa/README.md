@@ -3,11 +3,13 @@ based on Docker
 
 Ansible installation based on Docker with rsa key
 Cleanup if needed
+```
 docker ps
 docker ps -a
 docker rm -f $(docker ps -a -q)
 docker images
 docker rmi -f $(docker images -q)
+```
 Ansible Agent Linux
 ssh-keygen -R It removes a saved host key from your SSH known_hosts file
 install ansible-slave

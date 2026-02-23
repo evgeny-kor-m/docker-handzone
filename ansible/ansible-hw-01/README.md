@@ -3,7 +3,7 @@
 
 docker compose up -d --build
 docker compose down 
-
+docker exec -it ansible-master-01 sh
 
 tee inventory.yml <<EOF
 all:

@@ -1,0 +1,51 @@
+services:
+  application:
+    restart: always
+    image: lab5-app:v0.2
+    container_name: lab5-application
+    ports:
+      - "4000:3010"
+    environment:
+      - DB_HOST=mongo-server
+      - DB_PORT=27017
+    networks:
+      - lab5-network
+    depends_on:
+      - mongo-server
+  mongo-client:
+    restart: always
+    image: mongo-express:latest
+    container_name: lab5-mongo-client
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://root:secretPassword@mongo-server:27017
+      ME_CONFIG_BASICAUTH_ENABLED: true
+      ME_CONFIG_BASICAUTH_USERNAME: yakir
+      ME_CONFIG_BASICAUTH_PASSWORD: strongPassword
+    depends_on:
+      - mongo-server
+    networks:
+      - lab5-network
+  mongo-server:
+    restart: always
+    image: mongo:latest
+    container_name: lab5-mongo-server
+    ports:
+      - "27027:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=secretPassword
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - lab5-network
+
+volumes:
+  mongodb_data:
+    external: true
+
+networks:
+  lab5-network:
+    driver: bridge
+    external: true

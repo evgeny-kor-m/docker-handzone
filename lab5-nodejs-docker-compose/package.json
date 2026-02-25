@@ -1,0 +1,18 @@
+{
+  "name": "lab5-nodejs-docker-compose",
+  "version": "1.0.0",
+  "description": "docker build -t lab5-app:v0.1 -f .\\app.dockerfile .",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.2.2"
+  }
+}

@@ -1,34 +1,11 @@
-docker build -t lab6:v0.1 .
+const express = require('express')
+const app = express()
+const port = 3000
 
-docker run -d --name Lab6 -p 3000:3000 lab6:v0.1
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-docker exec -it Lab6 bash
-
-whoami
-
-root
-cat /etc/passwd -> node (user)
-
-docker run -d --name Lab6 --user node -p 3000:3000 lab6:v0.1
-
-docker exec -it Lab6 bash
-
-whoami
-
-node
-docker build -t lab6:v0.2 .
-
-docker run -d --name Lab6 -p 3000:3000 lab6:v0.2
-
-docker exec -it Lab6 bash
-
-docker run -d --name Lab6 --user root -p 3000:3000 lab6:v0.1
-
-cat /etc/os-release
-
-Debian
-docker build -t lab6:v0.3 .
-
-docker run -d --name Lab6 --user express -p 3000:3000 lab6:v0.3
-
-docker exec -it Lab6 bash
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
